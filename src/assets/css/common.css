@@ -1,0 +1,62 @@
+ul {
+  padding: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.clearfix:after {
+  clear: both;
+  display: block;
+  content: "";
+  height: 0;
+  visibility: hidden;
+}
+.inline-block {
+  display: inline-block;
+}
+.p0 {
+  padding: 0;
+}
+.p10 {
+  padding: 10px;
+}
+.p15 {
+  padding: 15px;
+}
+.mt5 {
+  margin-top: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+.bb1 {
+  border-bottom: 1px solid #e3e3e3;
+}
+.br2 {
+  border-radius: 2px;
+}
+
+.hr-line-dashed {
+  margin: 10px 0;
+  border-top: 1px dashed #e7eaec;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+}
+.ant-table-thead > tr > th.textCenter,
+.ant-table-tbody > tr > td.textCenter {
+  text-align: center;
+}
+.pointer {
+  cursor: pointer;
+}

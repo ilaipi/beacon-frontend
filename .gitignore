@@ -1,0 +1,28 @@
+# general
+.idea
+.DS_Store
+*~
+.sass-cache
+.vscode
+
+# package control
+node_modules
+bower_components
+src/vendor
+
+# logs
+npm-debug.log
+
+# build
+.tmp
+dist/
+static/
+build/
+
+#test
+test/screenshots/*
+!test/screenshots/README.md
+test/unit-results/*
+!test/unit-results/README.md
+
+.tern-project
