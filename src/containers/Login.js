@@ -14,13 +14,13 @@ const storage = window.localStorage;
     auth: state.get('Auth').toJS()
   }),
   dispatch => ({
-    auth: bindActionCreators(authActionCreator, dispatch),
+    authActions: bindActionCreators(authActionCreator, dispatch),
   })
 )
 export default class Login extends Component {
   login = (username, password) => {
-    const { auth } = this.props;
-    auth.login(
+    const { authActions } = this.props;
+    authActions.login(
       username,
       password
     )
@@ -30,7 +30,7 @@ export default class Login extends Component {
         const { id } = data
         storage.setItem(AUTH_INFO_KEY, JSON.stringify(data));
         setCookie(COOKIE_KEY, id, (1 / 48));
-        history.push('/patients');
+        history.push('/dashboard');
       }
     });
   }

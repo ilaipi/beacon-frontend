@@ -75,7 +75,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server -d --history-api-fallback --hot --inline --progress --port 3008 --host 0.0.0.0",
+    "start": "NODE_ENV=development webpack-dev-server -d --history-api-fallback --hot --inline --progress --port 3009 --host 0.0.0.0",
     "build": "NODE_ENV=production webpack --progress --colors",
     "package": "npm run build && tar -czf ~/Downloads/frontend.dist.tar.gz build/** && scp -P 53081 ~/Downloads/frontend.dist.tar.gz root@120.27.246.166:/home/react-demo"
   }

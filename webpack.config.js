@@ -298,7 +298,7 @@ const clientConfig = Object.assign({}, baseConfig, {
     contentBase: './src',
     hot: true,
     proxy: {
-      '/api': 'http://localhost:1337'
+      '/api': 'http://localhost:3000'
     }
   }
 })
