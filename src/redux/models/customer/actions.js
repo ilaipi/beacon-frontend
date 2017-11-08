@@ -1,21 +1,31 @@
 import { createAction } from 'redux-actions'
 import axios from 'axios'
 import {
-  LOGIN_REQUESTED,
-  LOGIN_SUCCEEDED,
-  LOGIN_FAILED
+  CUSTOMERS_REQUESTED,
+  CUSTOMERS_SUCCEEDED,
+  CUSTOMERS_FAILED,
+
+  CUSTOMER_SAVE_REQUESTED,
+  CUSTOMER_SAVE_SUCCEEDED,
+  CUSTOMER_SAVE_FAILED
 } from './const'
 
-const loginRequested = createAction(LOGIN_REQUESTED)
-const loginSucceeded = createAction(LOGIN_SUCCEEDED)
-const loginFailed = createAction(LOGIN_FAILED)
-export const login = (username, password) => (dispatch) => {
-  dispatch(loginRequested())
-  return axios.post('/api/auth/login', { username, password })
-  .then(res => (dispatch(loginSucceeded(res.data))))
-  .catch(err => (dispatch(loginFailed(err.response.data.message))))
+const customersRequested = createAction(CUSTOMERS_REQUESTED)
+const customersSucceeded = createAction(CUSTOMERS_SUCCEEDED)
+const customersFailed = createAction(CUSTOMERS_FAILED)
+export const loadCustomers = () => (dispatch) => {
+  dispatch(customersRequested())
+  return axios.get('/api/customers')
+  .then(res => (dispatch(customersSucceeded(res.data))))
+  .catch(err => (dispatch(customersFailed(err.response.data.message))))
 }
 
-export const logout = () => () => (
-  axios.get('/api/auth/logout')
-)
+const customerSaveRequested = createAction(CUSTOMER_SAVE_REQUESTED)
+const customerSaveSucceeded = createAction(CUSTOMER_SAVE_SUCCEEDED)
+const customerSaveFailed = createAction(CUSTOMER_SAVE_FAILED)
+export const saveCustomer = customer => (dispatch) => {
+  dispatch(customerSaveRequested())
+  return axios.post('/api/customer', customer)
+  .then(res => (dispatch(customerSaveSucceeded(res.data))))
+  .catch(err => (dispatch(customerSaveFailed(err.response.data.message))))
+}

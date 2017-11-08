@@ -10,6 +10,16 @@ const getLogin = (location, cb) => {
     cb(null, require('./containers/Login').default)
   }, 'login')
 }
+const getCustomers = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/Customers').default)
+  }, 'customers')
+}
+const getCustomer = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/Customer').default)
+  }, 'customer')
+}
 const routeConf = [
   {
     path: '/',
@@ -20,6 +30,20 @@ const routeConf = [
         path: 'dashboard',
         getComponent: getDashboard
       },
+      {
+        path: 'customers',
+        indexRoute: { getComponent: getCustomers },
+        childRoutes: [
+          {
+            path: '_new',
+            getComponent: getCustomer
+          },
+          {
+            path: ':id',
+            getComponent: getCustomer
+          }
+        ]
+      }
     ]
   },
   {
