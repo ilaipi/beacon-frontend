@@ -19,10 +19,22 @@ export default class Customers extends Component {
       customer: {}
     };
   }
+  componentDidMount() {
+    const { path } = this.props.route;
+    if (path === '_new') return;
+    const { id } = this.props.routeParams;
+    const { customersActions } = this.props;
+    customersActions.getCustomer(id)
+    .then(() => {
+      const { customer } = this.props;
+      this.setState({ customer: customer.data });
+    });
+  }
   render () {
     return (
       <CustomerView
         saveCustomer={this.props.customersActions.saveCustomer}
+        customer={this.state.customer}
       />
     )
   }

@@ -20,6 +20,20 @@ class CustomerView extends Component {
   }
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { customer } = this.props;
+    // 默认是启用
+    let status;
+    switch (customer.status) {
+      case 'normal':
+        status = true;
+        break;
+      case 'disabled':
+        status = false;
+        break;
+      default:
+        status = true;
+        break;
+    }
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem {...formItemLayout} label="sn" hasFeedback>
@@ -28,6 +42,7 @@ class CustomerView extends Component {
               required: true,
               message: '必须设置唯一标识',
             }],
+            initialValue: customer.sn
           })(
             <Input placeholder="请输入唯一标识" />
           )}
@@ -38,20 +53,26 @@ class CustomerView extends Component {
               required: true,
               message: '客户名称',
             }],
+            initialValue: customer.name
           })(
             <Input placeholder="请输入客户名称" />
           )}
         </FormItem>
         <FormItem {...formItemLayout} label="邮箱">
-          {getFieldDecorator('email', { })(
-            <Input placeholder="请输入客户名称" />
+          {getFieldDecorator('email', {
+            initialValue: customer.email
+          })(
+            <Input placeholder="请输入客户邮箱" />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
           label="是否启用"
         >
-          {getFieldDecorator('status', { valuePropName: 'checked', initialValue: true })(
+          {getFieldDecorator('status', {
+            valuePropName: 'checked',
+            initialValue: status
+          })(
             <Switch />
           )}
         </FormItem>

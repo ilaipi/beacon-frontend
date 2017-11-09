@@ -5,6 +5,11 @@ import {
 } from 'antd';
 import { Link } from 'react-router';
 
+const statusMapping = {
+  normal: '正常',
+  disabled: '禁用'
+};
+
 const columns = [{
   title: '唯一标识',
   dataIndex: 'sn',
@@ -21,6 +26,7 @@ const columns = [{
   title: '状态',
   dataIndex: 'status',
   key: 'status',
+  render: text => statusMapping[text]
 }, {
   title: '',
   dataIndex: 'id',
