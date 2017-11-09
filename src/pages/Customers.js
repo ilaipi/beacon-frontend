@@ -21,6 +21,18 @@ const columns = [{
   title: '状态',
   dataIndex: 'status',
   key: 'status',
+}, {
+  title: '',
+  dataIndex: 'id',
+  render: (text, customer) => (
+    <Link
+      to={{
+        pathname: `/customers/${customer.id}`
+      }}
+    >
+      编辑
+    </Link>
+  )
 }];
 
 class CustomersView extends Component {
