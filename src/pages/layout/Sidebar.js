@@ -12,7 +12,7 @@ const Title = ({ type, title, collapsed }) => (
 )
 const getLinks = collapsed => ([
   { key: 'customers', pathname: '/customers', title: <Title type="team" title="客户管理" collapsed={collapsed} /> },
-  { key: 'burnintest', pathname: '/burnintest', title: <Title type="calendar" title="老化记录" collapsed={collapsed} /> }
+  { key: 'burnintests', pathname: '/burnintests', title: <Title type="calendar" title="老化记录" collapsed={collapsed} /> }
 ])
 const Sidebar = (props) => {
   const links = getLinks(props.collapsed)
