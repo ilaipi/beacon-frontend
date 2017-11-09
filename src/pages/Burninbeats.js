@@ -12,7 +12,6 @@ const buildHeader = () => {
     for (let j = 1; j < 9; j += 1) {
       floor.push({
         title: `第${j}个`,
-        width: 150,
         children: [
           {
             title: '电压',
@@ -67,7 +66,7 @@ class BurninbeatsView extends Component {
           dataSource={burninbeats}
           columns={columns}
           rowKey="id"
-          scroll={{ x: true, y: 640 }}
+          scroll={{ x: 8 * 150 * 6 + 300, y: 640 }}
         />
       </div>
     );
