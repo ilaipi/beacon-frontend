@@ -11,7 +11,7 @@ const columns = [{
 }, {
   title: '操作员',
   dataIndex: 'operator',
-  key: 'operator',
+  key: 'operator'
 }, {
   title: '良品率',
   dataIndex: 'goodP',
@@ -35,7 +35,7 @@ const columns = [{
   )
 }];
 
-class CustomersView extends Component {
+class BurnintestsView extends Component {
   render() {
     const { burnintests } = this.props;
     return (
@@ -45,5 +45,4 @@ class CustomersView extends Component {
     );
   }
 }
-export default CustomersView;
-
+export default BurnintestsView;

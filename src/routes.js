@@ -25,6 +25,11 @@ const getBurnintests = (location, cb) => {
     cb(null, require('./containers/Burnintests').default)
   }, 'burnintests')
 }
+const getBurninbeats = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/Burninbeats').default)
+  }, 'burninbeats')
+}
 const routeConf = [
   {
     path: '/',
@@ -51,7 +56,13 @@ const routeConf = [
       },
       {
         path: 'burnintests',
-        getComponent: getBurnintests
+        indexRoute: { getComponent: getBurnintests },
+        childRoutes: [
+          {
+            path: ':burnintest',
+            getComponent: getBurninbeats
+          }
+        ]
       }
     ]
   },
