@@ -202,7 +202,7 @@ const baseConfig = {
       debug: false
     }),
     new FaviconsWebpackPlugin({
-      logo: '../src/assets/img/favicon.png',
+      logo: '../src/assets/img/favicon.ico',
       icons: {
         android: false,
         appleIcon: false,
@@ -289,7 +289,7 @@ const clientConfig = Object.assign({}, baseConfig, {
       minify: {
         collapseWhitespace: true
       },
-      title: '万威',
+      title: '万威士电控',
       appMountId: 'root',
       mobile: true
     })
