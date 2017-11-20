@@ -30,7 +30,7 @@ export default class Login extends Component {
         const { id } = data
         storage.setItem(AUTH_INFO_KEY, JSON.stringify(data));
         setCookie(COOKIE_KEY, id, (1 / 48));
-        history.push('/dashboard');
+        history.push('/burnintests');
       }
     });
   }

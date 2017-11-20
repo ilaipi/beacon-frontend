@@ -6,7 +6,7 @@ import LinkMenu from 'Components/LinkMenu';
 
 const Title = ({ type, title, collapsed }) => (
   <span>
-    <Icon style={collapsed ? { fontSize: 16 } : {}} type={type} />
+    <Icon style={collapsed ? { fontSize: 18 } : {}} type={type} />
     {collapsed || title}
   </span>
 )

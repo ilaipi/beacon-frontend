@@ -34,7 +34,7 @@ const routeConf = [
   {
     path: '/',
     component: Layout,
-    indexRoute: { getComponent: getDashboard },
+    indexRoute: { getComponent: getBurnintests },
     childRoutes: [
       {
         path: 'dashboard',
