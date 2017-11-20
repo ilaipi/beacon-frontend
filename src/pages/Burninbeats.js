@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Table
 } from 'antd';
+import moment from 'moment';
 
 const buildHeader = () => {
   // 6层
@@ -37,14 +38,14 @@ const buildHeader = () => {
 };
 
 const mergedHeaders = buildHeader();
-console.log('mergedHeaders', mergedHeaders);
 
 const columns = [{
   title: '时间',
   dataIndex: 'date',
   key: 'date',
   width: 100,
-  fixed: 'left'
+  fixed: 'left',
+  render: text => moment(new Date(text)).format('MM/DD HH:mm')
 }, {
   title: '数据详情',
   children: mergedHeaders

@@ -3,11 +3,15 @@ import {
   Table
 } from 'antd';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 const columns = [{
-  title: '唯一标识',
-  dataIndex: 'record',
-  key: 'record'
+  title: '开始时间',
+  dataIndex: 'startTime',
+  render: text => moment(new Date(text)).format('YYYY/MM/DD HH:mm')
+}, {
+  title: '老化时长（分钟）',
+  dataIndex: 'duration'
 }, {
   title: '操作员',
   dataIndex: 'operator',
