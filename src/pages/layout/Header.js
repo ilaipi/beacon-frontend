@@ -75,18 +75,26 @@ class Header extends Component {
     )
     return (
       <header style={{ lineHeight: '50px', fontSize: 14, background: '#36a9e1' }}>
-        <div
+        <a
           style={{
             display: 'inline-block',
             paddingLeft: 20,
             fontSize: 22,
-            color: 'white'
+            width: '200px',
+            height: '53px',
+            backgroundColor: 'white'
           }}
         >
-          管理服务平台
-        </div>
+          <img
+            style={{
+              height: '53px',
+            }}
+            src="./../../assets/img/wanweishi.png"
+            alt="compony logo"
+          />
+        </a>
         <Icon
-          style={{ color: 'white', fontSize: 16, marginLeft: '10px' }}
+          style={{ color: 'white', fontSize: 16, marginLeft: '10px', top: '-20px', position: 'relative' }}
           type={sidebarOpen ? 'menu-unfold' : 'menu-fold'}
           onClick={toggleSidebar}
         />
