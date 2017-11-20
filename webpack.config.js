@@ -202,7 +202,7 @@ const baseConfig = {
       debug: false
     }),
     new FaviconsWebpackPlugin({
-      logo: '../src/assets/img/favicon.ico',
+      logo: '../src/assets/img/favicon.png',
       icons: {
         android: false,
         appleIcon: false,
