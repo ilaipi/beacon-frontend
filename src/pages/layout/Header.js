@@ -13,6 +13,8 @@ import { COOKIE_KEY, AUTH_INFO_KEY } from 'Config/session';
 import * as authActionCreators from 'Models/auth/actions';
 /* eslint-enable import/extensions */
 
+const logo = require('./../../assets/img/wanweishi.png');
+
 const storage = window.localStorage;
 const { Item: MenuItem, Divider: MenuDivider } = Menu
 const INIT_QRCODE = {
@@ -89,7 +91,7 @@ class Header extends Component {
             style={{
               height: '53px',
             }}
-            src="./../../assets/img/wanweishi.png"
+            src={logo}
             alt="compony logo"
           />
         </a>
