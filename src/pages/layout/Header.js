@@ -103,12 +103,6 @@ class Header extends Component {
         <div
           style={{ float: 'right', marginRight: 15 }}
         >
-          <span
-            style={{ color: 'white', paddingRight: 3 }}
-            onClick={() => this.showQrcode('bindToDepartment', '科室', user && user.department && user.department.name)}
-          >
-            <Icon type="qrcode" />科室二维码
-          </span>
           <Dropdown overlay={menu} placement="bottomLeft">
             <span style={{ color: 'white' }}>
               <Icon type="user" />{user && user.name}<Icon type="down" />
