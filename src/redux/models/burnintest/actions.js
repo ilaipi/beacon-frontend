@@ -9,9 +9,9 @@ import {
 const burnintestsRequested = createAction(BURNINTESTS_REQUESTED)
 const burnintestsSucceeded = createAction(BURNINTESTS_SUCCEEDED)
 const burnintestsFailed = createAction(BURNINTESTS_FAILED)
-export const loadBurnintests = () => (dispatch) => {
+export const loadBurnintests = customer => (dispatch) => {
   dispatch(burnintestsRequested())
-  return axios.get('/api/burnintests')
+  return axios.get('/api/burnintests', { params: { customer } })
   .then(res => (dispatch(burnintestsSucceeded(res.data))))
   .catch(err => (dispatch(burnintestsFailed(err.response.data.message))))
 }
