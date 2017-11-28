@@ -8,7 +8,7 @@ const style = {
 }
 const Footer = () => (
   <p style={style}>
-    本系统由宁波万威士电控科技有限公司提供
+    Copyright@ 宁波万威士电控科技有限公司 All Rights Reserved
   </p>
 )
 export default Footer
