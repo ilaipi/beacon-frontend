@@ -32,9 +32,9 @@ export default class Customers extends Component {
       this.setState({ customer: customer.data });
     });
   }
-  saveCustomer = () => {
+  saveCustomer = (customer) => {
     const { saveCustomer } = this.props.customersActions;
-    saveCustomer()
+    saveCustomer(customer)
     .then(() => {
       notification.success({
         message: '',
