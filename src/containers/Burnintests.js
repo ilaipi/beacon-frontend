@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import * as burnintestsActionCreator from 'Models/burnintest/actions';
 import * as customersActionCreator from 'Models/customer/actions';
 import BurnintestsView from 'Pages/Burnintests';
@@ -24,27 +26,29 @@ export default class Customers extends Component {
     };
   }
   componentDidMount() {
-    this.loadBurnintests();
+    this.loadBurnintests({
+      from: moment().startOf('month').format('YYYY-MM-DD'),
+      end: moment().format('YYYY-MM-DD')
+    });
     this.props.customersActions.loadCustomers().then(() => {
       const { customers = {} } = this.props;
       this.setState({ customers: customers.data });
     });
   }
-  loadBurnintests = (customer) => {
+  loadBurnintests = (params) => {
     const { loadBurnintests } = this.props.burnintestsActions;
-    return loadBurnintests(customer).then(() => {
+    return loadBurnintests(params).then(() => {
       const { burnintests = {} } = this.props;
       this.setState({ burnintests: burnintests.data });
     });
   }
-  changeCustomer = customer => this.loadBurnintests(customer)
   render () {
     const { burnintests, customers } = this.state;
     return (
       <BurnintestsView
         burnintests={burnintests}
         customers={customers}
-        changeCustomer={this.changeCustomer}
+        loadBurnintests={this.loadBurnintests}
       />
     )
   }
