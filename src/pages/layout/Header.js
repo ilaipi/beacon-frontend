@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -17,11 +18,6 @@ const logo = require('./../../assets/img/wanweishi.png');
 
 const storage = window.localStorage;
 const { Item: MenuItem, Divider: MenuDivider } = Menu
-const INIT_QRCODE = {
-  type: '',
-  visible: false,
-  info: ''
-};
 
 @connect(
   state => ({
@@ -34,24 +30,7 @@ const INIT_QRCODE = {
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      qrcodeContainer: { ...INIT_QRCODE }
-    };
     this.logout = this.logout.bind(this)
-  }
-  showQrcode = (bind, type, info) => {
-    const { qrCode } = this.props.qrcodeAction;
-    qrCode({ bind });
-    this.setState({
-      qrcodeContainer: {
-        type,
-        info,
-        visible: true
-      }
-    });
-  }
-  hideQrcode = () => {
-    this.setState({ qrcodeContainer: { ...INIT_QRCODE } });
   }
   logout = () => {
     const { logout } = this.props.authAction;
@@ -67,8 +46,9 @@ class Header extends Component {
     const user = JSON.parse(storage.getItem(AUTH_INFO_KEY));
     const menu = (
       <Menu>
-        <MenuItem>个人资料</MenuItem>
-        <MenuItem>修改密码</MenuItem>
+        <MenuItem>
+          <Link to="/passwd">修改密码</Link>
+        </MenuItem>
         <MenuDivider />
         <MenuItem>
           <span onClick={this.logout}>退出登录</span>

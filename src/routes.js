@@ -5,6 +5,11 @@ const getDashboard = (location, cb) => {
     cb(null, require('./pages/Dashboard').default)
   }, 'dashboard')
 }
+const getPasswd = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/Passwd').default)
+  }, 'passwd')
+}
 const getLogin = (location, cb) => {
   require.ensure([], (require) => {
     cb(null, require('./containers/Login').default)
@@ -39,6 +44,10 @@ const routeConf = [
       {
         path: 'dashboard',
         getComponent: getDashboard
+      },
+      {
+        path: 'passwd',
+        getComponent: getPasswd
       },
       {
         path: 'customers',

@@ -25,6 +25,6 @@ axios.interceptors.response.use((response) => {
   if (response && response.status === 401) {
     history.push('/login'); // 跳转到登录页
   }
-  return Promise.reject(error);
+  return Promise.reject(response.data);
 });
 
