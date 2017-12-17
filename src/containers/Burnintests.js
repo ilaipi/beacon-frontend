@@ -27,9 +27,10 @@ export default class Customers extends Component {
     };
   }
   componentDidMount() {
+    const { burnintests: { from = moment().startOf('month'), end = moment() } = {} } = this.props;
     this.loadBurnintests({
-      from: moment().startOf('month').format('YYYY-MM-DD'),
-      end: moment().format('YYYY-MM-DD'),
+      from: from.format('YYYY-MM-DD'),
+      end: end.format('YYYY-MM-DD'),
       limit: 15,
       page: 1
     });
@@ -37,6 +38,10 @@ export default class Customers extends Component {
       const { customers = {} } = this.props;
       this.setState({ customers: customers.data });
     });
+  }
+  setDate = (dates) => {
+    const { setDateRange } = this.props.burnintestsActions;
+    setDateRange({ from: dates[0], end: dates[1] });
   }
   loadBurnintests = (params) => {
     const { loadBurnintests } = this.props.burnintestsActions;
@@ -47,8 +52,12 @@ export default class Customers extends Component {
   }
   render () {
     const { burnintests, total, customers } = this.state;
+    const { burnintests: { from = moment().startOf('month'), end = moment() } = {} } = this.props;
     return (
       <BurnintestsView
+        from={from}
+        end={end}
+        setDateRange={this.setDate}
         burnintests={burnintests}
         customers={customers}
         loadBurnintests={this.loadBurnintests}

@@ -1,6 +1,8 @@
 import { createAction } from 'redux-actions'
 import axios from 'axios'
 import {
+  SET_DATE_RANGE,
+
   BURNINTESTS_REQUESTED,
   BURNINTESTS_SUCCEEDED,
   BURNINTESTS_FAILED
@@ -15,3 +17,5 @@ export const loadBurnintests = params => (dispatch) => {
   .then(res => (dispatch(burnintestsSucceeded(res.data))))
   .catch(err => (dispatch(burnintestsFailed(err.response.data.message))))
 }
+
+export const setDateRange = createAction(SET_DATE_RANGE);

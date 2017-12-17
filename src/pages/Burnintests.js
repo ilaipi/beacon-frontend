@@ -29,9 +29,9 @@ class BurnintestsView extends Component {
   changePage = page => this.setState({ page });
 
   render() {
-    const { burnintests, total, customers, loadBurnintests } = this.props;
+    const { burnintests, total, customers, loadBurnintests, setDateRange, from, end } = this.props;
     const options = map(customers, ({ name, sn }) => <Option value={sn}>{name}</Option>);
-    const currentMonth = [moment().startOf('month'), moment()];
+    const currentMonth = [from, end];
     return (
       <div>
         <Row gutter={4} style={{ marginBottom: '12px' }}>
@@ -52,7 +52,10 @@ class BurnintestsView extends Component {
               defaultValue={currentMonth}
               ranges={{ 本月: currentMonth }}
               format="YYYY-MM-DD"
-              onChange={this.setDate}
+              onChange={(dates, dateStrings) => {
+                this.setDate(dates, dateStrings);
+                setDateRange(dates, dateStrings);
+              }}
             />
           </Col>
           <Col sm={3}>
