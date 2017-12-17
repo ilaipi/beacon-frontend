@@ -11,7 +11,13 @@ export const BURNINTESTS_COLUMNS = [
     dataIndex: 'startTime',
     render: text => moment(new Date(text)).format('YYYY/MM/DD HH:mm')
   }, {
-    title: '老化时长（分钟）',
+    title: '机种参数',
+    dataIndex: 'deviceType'
+  }, {
+    title: '批次',
+    dataIndex: 'batch'
+  }, {
+    title: '老化时长（小时）',
     dataIndex: 'duration'
   }, {
     title: '操作员',
