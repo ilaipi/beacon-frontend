@@ -22,13 +22,16 @@ export default class Customers extends Component {
     super(props);
     this.state = {
       burnintests: [],
+      total: 0,
       customers: []
     };
   }
   componentDidMount() {
     this.loadBurnintests({
       from: moment().startOf('month').format('YYYY-MM-DD'),
-      end: moment().format('YYYY-MM-DD')
+      end: moment().format('YYYY-MM-DD'),
+      limit: 15,
+      page: 1
     });
     this.props.customersActions.loadCustomers().then(() => {
       const { customers = {} } = this.props;
@@ -38,17 +41,18 @@ export default class Customers extends Component {
   loadBurnintests = (params) => {
     const { loadBurnintests } = this.props.burnintestsActions;
     return loadBurnintests(params).then(() => {
-      const { burnintests = {} } = this.props;
-      this.setState({ burnintests: burnintests.data });
+      const { burnintests: { data = {} } = {} } = this.props;
+      this.setState({ burnintests: data.docs, total: data.total });
     });
   }
   render () {
-    const { burnintests, customers } = this.state;
+    const { burnintests, total, customers } = this.state;
     return (
       <BurnintestsView
         burnintests={burnintests}
         customers={customers}
         loadBurnintests={this.loadBurnintests}
+        total={total}
       />
     )
   }

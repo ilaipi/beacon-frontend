@@ -15,7 +15,9 @@ class BurnintestsView extends Component {
   state = {
     from: moment().startOf('month').format('YYYY-MM-DD'),
     end: moment().format('YYYY-MM-DD'),
-    customer: undefined
+    customer: undefined,
+    page: 1,
+    limit: 15
   }
   setDate = (dates, dateStrings) => {
     this.setState({
@@ -24,8 +26,10 @@ class BurnintestsView extends Component {
     });
   }
 
+  changePage = page => this.setState({ page });
+
   render() {
-    const { burnintests, customers, loadBurnintests } = this.props;
+    const { burnintests, total, customers, loadBurnintests } = this.props;
     const options = map(customers, ({ name, sn }) => <Option value={sn}>{name}</Option>);
     const currentMonth = [moment().startOf('month'), moment()];
     return (
@@ -63,7 +67,21 @@ class BurnintestsView extends Component {
             (tips: 包含开始和结束日期)
           </Col>
         </Row>
-        <Table dataSource={burnintests} columns={BURNINTESTS_COLUMNS} rowKey="record" />
+        <Table
+          dataSource={burnintests}
+          columns={BURNINTESTS_COLUMNS}
+          rowKey="record"
+          pagination={{
+            current: this.state.page,
+            pageSize: this.state.limit,
+            showTotal: (totalRows, range) => `${range[0]}-${range[1]} 共 ${totalRows}`,
+            total,
+            onChange: (page) => {
+              this.changePage(page);
+              loadBurnintests({ ...this.state, page });
+            }
+          }}
+        />
       </div>
     );
   }
