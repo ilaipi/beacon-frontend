@@ -16,25 +16,28 @@ export default class Customers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      burninbeats: []
+      burninbeats: [],
+      total: 0
     };
   }
   componentDidMount() {
-    this.loadBurninbeats().then(() => {
-      const { burninbeats = {} } = this.props;
-      this.setState({ burninbeats: burninbeats.data });
-    });
+    this.loadBurninbeats();
   }
-  loadBurninbeats = () => {
+  loadBurninbeats = (page = 1) => {
     const { loadBurninbeats } = this.props.burninbeatsActions;
     const { burnintest } = this.props.routeParams;
-    return loadBurninbeats(burnintest);
+    loadBurninbeats({ burnintest, limit: 15, page }).then(() => {
+      const { burninbeats = {} } = this.props;
+      this.setState({ burninbeats: burninbeats.data.docs, total: burninbeats.data.total });
+    });
   }
   render () {
-    const { burninbeats } = this.state;
+    const { burninbeats, total } = this.state;
     return (
       <BurninbeatsView
+        loadBurninbeats={this.loadBurninbeats}
         burninbeats={burninbeats}
+        total={total}
       />
     )
   }

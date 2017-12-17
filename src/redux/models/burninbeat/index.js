@@ -8,7 +8,7 @@ import {
 } from './const';
 
 const initialState = Immutable.fromJS({
-  data: [],
+  data: {},
   loading: false,
   error: false
 })

@@ -9,9 +9,9 @@ import {
 const burninbeatsRequested = createAction(BURNINBEATS_REQUESTED)
 const burninbeatsSucceeded = createAction(BURNINBEATS_SUCCEEDED)
 const burninbeatsFailed = createAction(BURNINBEATS_FAILED)
-export const loadBurninbeats = burnintest => (dispatch) => {
+export const loadBurninbeats = params => (dispatch) => {
   dispatch(burninbeatsRequested())
-  return axios.get(`/api/burninbeats/${burnintest}`)
+  return axios.get('/api/burninbeats', { params })
   .then(res => (dispatch(burninbeatsSucceeded(res.data))))
   .catch(err => (dispatch(burninbeatsFailed(err.response.data.message))))
 }
