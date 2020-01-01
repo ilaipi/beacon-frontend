@@ -5,15 +5,16 @@ WORKDIR /app
 
 # ---- Dependencies ----
 FROM base AS dependencies
-COPY ./$REPO_NAME/package*.json ./
+COPY ./package*.json ./
 # install app dependencies including 'devDependencies'
 RUN npm install --registry=https://registry.npm.taobao.org
 
 # ---- Copy Files/Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY ./$REPO_NAME /app/
+COPY ./ /app/
 RUN npm run build
+RUN rm -fr src
 
 # --- Release with Alpine ----
 FROM nginx:1.17.6-alpine AS release
