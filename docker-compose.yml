@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  beacon:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "53002:6000"
+    env_file:
+      - .env
+    privileged: true
+    networks:
+        - mongo
+networks:
+  mongo:
+    external:
+      name: mongo
